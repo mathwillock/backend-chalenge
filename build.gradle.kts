@@ -33,6 +33,8 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers")
     implementation("io.micronaut:micronaut-validation")
 
+    compileOnly("org.mapstruct:mapstruct-processor:1.4.2.Final")
+
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 }
