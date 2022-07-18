@@ -10,7 +10,7 @@ plugins {
 version = "0.1"
 group = "com.wirecard"
 
-val kotlinVersion=project.properties.get("kotlinVersion")
+val kotlinVersion= project.properties["kotlinVersion"]
 repositories {
     mavenCentral()
 }
@@ -32,6 +32,10 @@ dependencies {
     testImplementation("org.testcontainers:mysql")
     testImplementation("org.testcontainers:testcontainers")
     implementation("io.micronaut:micronaut-validation")
+
+    compileOnly("org.mapstruct:mapstruct-processor:1.4.2.Final")
+
+    testImplementation("io.mockk:mockk:1.12.4")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
