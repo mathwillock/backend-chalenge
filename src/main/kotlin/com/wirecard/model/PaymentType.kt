@@ -1,4 +1,6 @@
 package com.wirecard.model
 
-enum class PaymentType {
+enum class TypePayment {
+    CARD,
+    TICKET
 }
