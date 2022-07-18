@@ -9,23 +9,33 @@ class BuyerService(
     private val buyerRepository: BuyerRepository
 ) {
 
-    fun createBuyer(buyer: Buyer): Buyer  {
-
-        if (buyerExistent(buyer.cpf)) {
-            return buyerRepository.save(buyer)
+    fun createBuyer(buyer: Buyer): Buyer {
+        if (findBuyer(buyer.cpf)) {
+             return buyerRepository.save(buyer)
         }
-        throw IllegalArgumentException("Buyer already exists")
 
-//        throw Exception("Buyer already exists")
+        throw IllegalArgumentException("Buyer already exists")
     }
 
+    fun updateBuyer(buyer: Buyer): Buyer {
+         buyerRepository.findByCpf(buyer.cpf)?.let {
+            it.name = buyer.name
+            it.email = buyer.email
+            return buyerRepository.update(it)
+         }
 
-    fun buyerExistent(cpf: String): Boolean {
-        val getBuyer = buyerRepository.findByCpf(cpf)
-        if (getBuyer != null) {
+        throw IllegalArgumentException("Buyer does not exists")
+    }
+
+    private fun findBuyer(cpf: String): Boolean {
+        buyerRepository.findByCpf(cpf)?.let {
             return false
         }
+
        return true
     }
+
+
+
 
 }
